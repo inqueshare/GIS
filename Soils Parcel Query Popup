@@ -1,0 +1,10 @@
+var soils = FeatureSetByName($map,"Soils");
+var intersect = Intersects(soils, $feature);
+var soilcount = Count(intersect);
+var intersectArea = 0;
+var blocknames = "There are "+soilcount+" different soils at this parcel ";
+for (var soilname in intersect){
+    intersectArea += Area(Intersection($feature, soilname), 'acres');
+    blocknames += TextFormatting.NewLine + " - " + soilname.muname+TextFormatting.NewLine+intersectArea+TextFormatting.NewLine+TextFormatting.NewLine;}
+
+return blocknames; 
